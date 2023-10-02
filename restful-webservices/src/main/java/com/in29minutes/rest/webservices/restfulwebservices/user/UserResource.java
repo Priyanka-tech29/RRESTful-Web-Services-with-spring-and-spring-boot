@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import jakarta.validation.Valid;
+
 //this is a rest API
 @RestController
 public class UserResource {
@@ -96,9 +98,10 @@ public class UserResource {
 	// save and check in browser and go talent api tester send one new post request
 	// then you will be able to see loc in response as well
 	// http://localhost:8080/users/5
+	//Implement validation for restapi using @Valid and open User class using ctrl+mouse courser(Implementation & Declaration)
 
 	@PostMapping("/users")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		User savedUser = service.save(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
 				.toUri();
