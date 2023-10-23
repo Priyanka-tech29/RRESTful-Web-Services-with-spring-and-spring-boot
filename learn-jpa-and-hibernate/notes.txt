@@ -1,0 +1,36 @@
+SELECT * FROM COURSE 
+insert into course (id, name, author)  values(1, 'LearnSpringBoot', 'Priyanka-tech29');
+delete from course where id =1;
+
+
+//----------------------------------use of  JPA over spring Jdbc------------------------
+
+using jpa we directly map our table class to database table.
+example---books is directly map throw course table.
+create a mapping between java bean and the table, we use that mapping to insert the values, 
+retrieve values and do operations on your table.
+type @Entity on our books class organize imports jakarta
+add another annotation make an primary key
+like-----@ID,@Column(name="name"),@Column(name="author") map java bean and table.
+go to the course package create a anew repository CourseJpaRep class add @Repository talk to the database
+create and EntityManager to manage our entity
+we want to start with inserting a row
+insted of using //@Autowired we are usng @PersistenceContext
+now we need to go commandLineRunner class to make the use of CourseJpaRep
+change it like class CourseCommandLine implements CommandLineRunner make it inside course package
+now you need to switch from jdbc repo to jpa repo in CoursecommandLineRunner class
+
+
+////**************************************JDBC tO Sping JDBC tO JPA tO Spring Data JPA  **********************************
+
+JDBC        --------------1) write a lot of SQL quries         2) write a lot of java code
+Spring JDBC---------------1) write a lot of SQL quries         2) But lesser java code
+JPA         --------------1) Do not worry about quries         2) Just Map Entities to table
+Spring Data JPA ----------1) Let's make JPA even more simple!  2) I will take care of all
+
+
+-----------------use of spring data jpa------------------------------------------
+go to course package crate an interface SpringDataJpa which extends JpaRepo interface and use this repo
+in commandLine runner to see changes.
+and if if you want use find by author then need to follow naming convention like findByAuthor
+define it in repo class and call it in commandlinerunner
